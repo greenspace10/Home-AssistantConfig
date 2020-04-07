@@ -1,0 +1,14 @@
+---
+alias: Perform Weekly Backup
+trigger:
+  platform: time
+  at: "02:30:00"
+condition:
+  condition: time # On Mondays perform a weekly backup
+  weekday:
+    - mon
+action:
+  service: auto_backup.snapshot_full
+  data_template:
+    name: "WeeklyBackup: {{ now().strftime('%A, %B %-d, %Y') }}"
+    keep_days: 156 # Store backup for a month, basically perform 1 backup each week and store for 4 weeks.

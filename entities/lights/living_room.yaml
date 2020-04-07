@@ -1,0 +1,9 @@
+---
+# Light group: Second Floor Bathroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: living_room
+entities:
+  - light.living_room_floor

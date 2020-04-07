@@ -1,0 +1,2 @@
+# Home-AssistantConfig
+Coming Soon

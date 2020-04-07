@@ -1,0 +1,28 @@
+---
+bedroom_applt_tv_plex:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - menu
+    - delay: 00:00:02
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - top_menu
+    - delay: 00:00:05            
+#    - service: remote.send_command
+#      data:
+#        entity_id: remote.apple_tv
+#        command:
+#          - right
+#          - right
+#          - down
+#    - delay: 00:00:02
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - select

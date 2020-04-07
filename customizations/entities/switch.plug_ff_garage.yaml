@@ -1,0 +1,9 @@
+---
+#
+# Customizes the second floor bathroom lights in Home Assistant
+#
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#
+switch.plug_ff_garage:
+  friendly_name: Outside
+  icon: mdi:power-socket-us

@@ -1,0 +1,54 @@
+button_laundry_notify:
+  card:
+    type: custom:button-card
+    template: button_laundry_notify
+    name: '[[name]]'
+    entity: input_select.laundry_notify
+    label: >
+      [[[
+        if (entity.state == '[[name]]') return 'On';
+        return 'Off';
+      ]]]
+    icon: >
+      [[[
+        if (entity.state == '[[name]]') return 'mdi:account';
+        return 'mdi:account-outline'
+      ]]]
+    tap_action:
+      action: call-service
+      service: input_select.select_option
+      service_data:
+        entity_id: input_select.laundry_notify
+        option: '[[name]]'
+    hold_action:
+      action: call-service
+      service: input_select.select_option
+      service_data:
+        entity_id: input_select.laundry_notify
+        option: 'All'
+    styles:
+      name:
+        - color: var(--disabled-text-color)
+      card:
+        - color: '#555B65'
+        - opacity: 0.8
+      icon:
+        - color: var(--disabled-text-color)
+      label:
+        - color: var(--disabled-text-color)
+    id: off-icon
+    state:
+      - operator: template
+        value: >
+          [[[
+          return states['input_select.laundry_notify'].state == '[[name]]'
+          ]]]
+        styles:
+          name:
+            - color: 'green'
+          card:
+            - color: var(--primary-background-color)
+            - box-shadow: 0px 0px 8px 2px green
+          icon:
+            - color: 'green'
+        id: on-icon

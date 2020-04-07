@@ -1,0 +1,10 @@
+---
+# Light group: Second Floor Bathroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: bedroom_mom
+entities:
+  - light.bedroom_mom_bedside
+  - light.bedroom_mom_ceiling

@@ -1,0 +1,364 @@
+title: Presence
+icon: mdi:account
+path: presence
+cards:
+  # Left Stack
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: sensor.sm_n975w_battery_level
+            icon: 'mdi:human-male'
+            #aspect_ratio: 1/1
+            name: Nathan
+            show_name: false
+            styles:
+              card:
+                - background-color: >
+                    [[[
+                      if (states['person.nathan'].state == 'home') return 'rgb(255, 183, 18)';
+                      else return 'rgb(227, 228, 230)';
+                    ]]]
+                - padding: 5%
+                - color: black
+                - font-size: 12px
+                - font-weight: bold
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i battery_wifi" "car car" "speed speed" "since since"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+              icon:
+                - color: >
+                    [[[
+                      if (entity.state < 60) return 'blue';
+                      if (entity.state >= 60 && entity.state < 80) return 'blue';
+                      else return 'blue';
+                    ]]]
+                - width: 70%
+                - margin-top: -5%
+              custom_fields:
+                battery_wifi:
+                  - align-self: start
+                  - justify-self: end
+                car:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                speed:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                since:
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+            custom_fields:
+              battery_wifi: >
+                [[[
+                  var battery = (states['device_tracker.sm_n975w'].attributes.battery_level);
+                  var battery_icon = (states['sensor.sm_n975w_battery_level'].attributes.icon);
+                  var battery_icon_color = states['device_tracker.sm_n975w'].attributes.battery_level > 30 ? 'green' : 'red';
+                  var wifi_icon = states['device_tracker.galaxy_note10'].state === 'home' ? 'mdi:wifi' : 'mdi:wifi-off';
+                  var wifi_icon_color = states['device_tracker.sm_n975w'].state === 'home' ? 'green' : 'red';
+                  return '<ha-icon icon="' + wifi_icon +'" style="width: 19px; color:' + wifi_icon_color +';"></ha-icon> <ha-icon icon="' + battery_icon +'" style="width: 20px; height: 20px; color:' + battery_icon_color +';"></ha-icon>'
+                  + battery + '%'
+                ]]]
+              car: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:door"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Room: <span style="color: rgb(0, 0, 0);">${states['sensor.64_7b_ce_a7_21_3f_room_presence'].state} </span></span>`
+                ]]]
+              speed: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:car"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Speed: <span style="color: rgb(0, 0, 0);">${states['device_tracker.sm_n975w'].attributes.speed}KM/h</span></span>`
+                ]]]
+              since: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:clock"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Location: <span style="color: rgb(0, 0, 0);">${states['person.nathan'].state}</span></span>`
+                ]]]
+
+          - type: custom:button-card
+            entity: sensor.sarah_s_iphone_battery_level
+            icon: 'mdi:human-female'
+            #aspect_ratio: 1/1
+            name: Sarah
+            show_name: false
+            styles:
+              card:
+                - background-color: >
+                    [[[
+                      if (states['person.sarah'].state == 'home') return 'rgb(255, 183, 18)';
+                      else return 'rgb(227, 228, 230)';
+                    ]]]
+                - padding: 5%
+                - color: black
+                - font-size: 12px
+                - font-weight: bold
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i battery_wifi" "car car" "speed speed" "since since"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+              icon:
+                - color: >
+                    [[[
+                      if (entity.state < 60) return 'blue';
+                      if (entity.state >= 60 && entity.state < 80) return 'blue';
+                      else return 'blue';
+                    ]]]
+                - width: 70%
+                - margin-top: -5%
+              custom_fields:
+                battery_wifi:
+                  - align-self: start
+                  - justify-self: end
+                car:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                speed:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                since:
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+            custom_fields:
+              battery_wifi: >
+                [[[
+                  var battery = (states['device_tracker.sarah_s_iphone'].attributes.battery_level);
+                  var battery_icon = (states['sensor.sarah_s_iphone_battery_level'].attributes.icon);
+                  var battery_icon_color = states['device_tracker.sarah_s_iphone'].attributes.battery_level > 30 ? 'green' : 'red';
+                  var wifi_icon = states['device_tracker.sarahs_iphone'].state === 'home' ? 'mdi:wifi' : 'mdi:wifi-off';
+                  var wifi_icon_color = states['device_tracker.sarah_s_iphone'].state === 'home' ? 'green' : 'red';
+                  return '<ha-icon icon="' + wifi_icon +'" style="width: 19px; color:' + wifi_icon_color +';"></ha-icon> <ha-icon icon="' + battery_icon +'" style="width: 20px; height: 20px; color:' + battery_icon_color +';"></ha-icon>'
+                  + battery + '%'
+                ]]]
+              car: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:door"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Room: <span style="color: rgb(0, 0, 0);">${states['sensor.sarah_s_iphone_room_presence'].state} </span></span>`
+                ]]]
+              speed: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:car"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Speed: <span style="color: rgb(0, 0, 0);">${states['device_tracker.sarah_s_iphone'].attributes.speed}KM/h</span></span>`
+                ]]]
+              since: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:clock"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Location: <span style="color: rgb(0, 0, 0);">${states['person.sarah'].state}</span></span>`
+                ]]]
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: sensor.sm_g965w_battery_level
+            icon: 'mdi:human-female'
+            #aspect_ratio: 1/1
+            name: Nathan
+            show_name: false
+            styles:
+              card:
+                - background-color: >
+                    [[[
+                      if (states['person.hayley'].state == 'home') return 'rgb(255, 183, 18)';
+                      else return 'rgb(227, 228, 230)';
+                    ]]]
+                - padding: 5%
+                - color: black
+                - font-size: 12px
+                - font-weight: bold
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i battery_wifi" "car car" "speed speed" "since since"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+              icon:
+                - color: >
+                    [[[
+                      if (entity.state < 60) return 'blue';
+                      if (entity.state >= 60 && entity.state < 80) return 'blue';
+                      else return 'blue';
+                    ]]]
+                - width: 70%
+                - margin-top: -5%
+              custom_fields:
+                battery_wifi:
+                  - align-self: start
+                  - justify-self: end
+                car:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                speed:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                since:
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+            custom_fields:
+              battery_wifi: >
+                [[[
+                  var battery = (states['device_tracker.sm_g965w'].attributes.battery_level);
+                  var battery_icon = (states['sensor.sm_g965w_battery_level'].attributes.icon);
+                  var battery_icon_color = states['device_tracker.sm_g965w'].attributes.battery_level > 30 ? 'green' : 'red';
+                  var wifi_icon = states['device_tracker.galaxy_s9'].state === 'home' ? 'mdi:wifi' : 'mdi:wifi-off';
+                  var wifi_icon_color = states['device_tracker.galaxy_s9'].state === 'home' ? 'green' : 'red';
+                  return '<ha-icon icon="' + wifi_icon +'" style="width: 19px; color:' + wifi_icon_color +';"></ha-icon> <ha-icon icon="' + battery_icon +'" style="width: 20px; height: 20px; color:' + battery_icon_color +';"></ha-icon>'
+                  + battery + '%'
+                ]]]
+              car: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:door"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Room: <span style="color: rgb(0, 0, 0);">${states['sensor.galaxy_s9_room_presence'].state} </span></span>`
+                ]]]
+              speed: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:car"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Speed: <span style="color: rgb(0, 0, 0);">${states['device_tracker.galaxy_s9'].attributes.speed}KM/h</span></span>`
+                ]]]
+              since: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:clock"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Location: <span style="color: rgb(0, 0, 0);">${states['person.hayley'].state}</span></span>`
+                ]]]
+
+          - type: custom:button-card
+            entity: sensor.sm_a520w_battery_level
+            icon: 'mdi:human-female'
+            #aspect_ratio: 1/1
+            name: Sarah
+            show_name: false
+            styles:
+              card:
+                - background-color: >
+                    [[[
+                      if (states['person.carol'].state == 'home') return 'rgb(255, 183, 18)';
+                      else return 'rgb(227, 228, 230)';
+                    ]]]
+                - padding: 5%
+                - color: black
+                - font-size: 12px
+                - font-weight: bold
+                - text-transform: capitalize
+              grid:
+                - grid-template-areas: '"i battery_wifi" "car car" "speed speed" "since since"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr min-content min-content min-content
+              img_cell:
+                - justify-content: start
+                - align-items: start
+                - margin: none
+              icon:
+                - color: >
+                    [[[
+                      if (entity.state < 60) return 'blue';
+                      if (entity.state >= 60 && entity.state < 80) return 'blue';
+                      else return 'blue';
+                    ]]]
+                - width: 70%
+                - margin-top: -5%
+              custom_fields:
+                battery_wifi:
+                  - align-self: start
+                  - justify-self: end
+                car:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                speed:
+                  - padding-bottom: 2px
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+                since:
+                  - align-self: bottom
+                  - justify-self: start
+                #  - --text-color-sensor: '[[[ if (states["sensor.justin_phone_to_home"].state > 80) return "red"; ]]]'
+            custom_fields:
+              battery_wifi: >
+                [[[
+                  var battery = (states['device_tracker.sm_a520w'].attributes.battery_level);
+                  var battery_icon = (states['sensor.sm_a520w_battery_level'].attributes.icon);
+                  var battery_icon_color = states['device_tracker.sm_a520w'].attributes.battery_level > 30 ? 'green' : 'red';
+                  var wifi_icon = states['device_tracker.galaxy_a5_2017'].state === 'home' ? 'mdi:wifi' : 'mdi:wifi-off';
+                  var wifi_icon_color = states['device_tracker.sm_a520w'].state === 'home' ? 'green' : 'red';
+                  return '<ha-icon icon="' + wifi_icon +'" style="width: 19px; color:' + wifi_icon_color +';"></ha-icon> <ha-icon icon="' + battery_icon +'" style="width: 20px; height: 20px; color:' + battery_icon_color +';"></ha-icon>'
+                  + battery + '%'
+                ]]]
+              car: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:door"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Room: <span style="color: rgb(0, 0, 0);">${states['sensor.sarah_s_iphone_room_presence'].state} </span></span>`
+                ]]]
+              speed: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:car"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Speed: <span style="color: rgb(0, 0, 0);">${states['device_tracker.sarah_s_iphone'].attributes.speed}KM/h</span></span>`
+                ]]]
+              since: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:clock"
+                    style="width: 19px; height: 19px; color: rgb(0, 0, 0);">
+                    </ha-icon><span>Location: <span style="color: rgb(0, 0, 0);">${states['person.carol'].state}</span></span>`
+                ]]]
+
+
+  # Middle Stack
+#  - type: vertical-stack
+#    cards:
+
+  # Right Stack
+#  - type: vertical-stack
+#    cards:
+      

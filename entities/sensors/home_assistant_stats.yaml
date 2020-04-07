@@ -1,0 +1,105 @@
+---
+
+platform: template
+sensors:
+#----- Count Automations
+  count_automations:
+    entity_id: sensor.date
+    friendly_name: Automations
+    value_template: "{{ states.automation | count }}"
+    icon_template: mdi:robot
+#----- Count Scripts
+  count_scripts:
+    entity_id: sensor.date
+    friendly_name: Scripts
+    value_template: "{{ states.script| count }}"
+
+#----- Count Device Trackers
+  count_device_trackers:
+    entity_id: sensor.date
+    friendly_name: Device Trackers
+    value_template: "{{ states.device_tracker | count }}"
+
+#----- Count Binary Sensors
+  count_binary_sensors:
+    entity_id: sensor.date
+    friendly_name: Binary Sensors
+    value_template: "{{ states.binary_sensor| count }}"
+
+#----- Count Sensors
+  count_sensors:
+    entity_id: sensor.date
+    friendly_name: Sensors
+    value_template: "{{ states.sensor | count }}"
+
+#----- Count Switches
+  count_switches:
+    entity_id: sensor.date
+    friendly_name: Switches
+    value_template: "{{ states.switch | count }}"
+
+#----- Count Lights
+  count_lights:
+    entity_id: sensor.date
+    friendly_name: Lights
+    value_template: "{{ states.light | count }}"
+
+#----- Count Fans
+  count_fans:
+    entity_id: sensor.date
+    friendly_name: Fans
+    value_template: "{{ states.fan | count }}"
+
+#----- Count Media Players
+  count_media_players:
+    entity_id: sensor.date
+    friendly_name: Media Players
+    value_template: "{{ states.media_player | count }}"
+
+#----- Count People
+  count_persons:
+    entity_id: sensor.date
+    friendly_name: People
+    value_template: "{{ states.person | count }}"
+
+#----- Count Zwave
+  count_zwave:
+    entity_id: sensor.date
+    friendly_name: Zwave Deviced
+    value_template: "{{ states.zwave | count }}"
+
+#----- Count Zones
+  count_zones:
+    entity_id: sensor.date
+    friendly_name: Zones
+    value_template: "{{ states.zone | count }}"
+
+#----- Input Booleans
+  count_input_booleans:
+    entity_id: sensor.date
+    friendly_name: Input Booleans
+    value_template: "{{ states.input_boolean | count }}"
+
+#----- Input Numbers
+  count_input_numbers:
+    entity_id: sensor.date
+    friendly_name: Input Numbers
+    value_template: "{{ states.input_number | count }}"
+
+#----- Input Texts
+  count_input_texts:
+    entity_id: sensor.date
+    friendly_name: Input Texts
+    value_template: "{{ states.input_text | count }}"
+
+#----- Input Selects
+  count_input_selects:
+    entity_id: sensor.date
+    friendly_name: Input Selects
+    value_template: "{{ states.input_select | count }}"
+
+#----- Input Date Times
+  count_input_datetimes:
+    entity_id: sensor.date
+    friendly_name: Input Date/Times
+    value_template: "{{ states.input_datetime | count }}"

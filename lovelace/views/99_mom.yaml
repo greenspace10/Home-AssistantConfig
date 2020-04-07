@@ -1,0 +1,90 @@
+title: Mom
+icon: mdi:human-female
+path: mom
+cards:
+  # Left Stack
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Lights
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.living_room
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.entry
+          - type: 'custom:button-card'
+            template: button_light
+            name: Ceiling
+            entity: light.bedroom_mom_ceiling
+          - type: 'custom:button-card'
+            template: button_light
+            name: Bedside Lamp
+            entity: light.bedroom_mom_bedside
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Routines
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_routine
+            entity: sensor.carol_bedtime_routine
+            lock:
+              enabled: false
+            tap_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.bedroom_mom
+            hold_action:
+              action: call-service
+              service: script.carol_bedtime_routine
+            state:
+              - value: 1
+                styles:
+                  card:
+                    - color: orange
+                  icon:
+                    - color: orange
+              - value: 2
+                styles:
+                  card:
+                    - color: purple
+                  icon:
+                    - color: purple
+
+          - type: 'custom:button-card'
+            template: button_appliance
+            entity: group.timed_lights_outside
+            name: Night Time Lights
+            icon: 'mdi:theme-light-dark'
+            lock:
+              enabled: '[[[ return states["input_boolean.sleep_carol"].state == "on"; ]]]'
+              duration: 10
+              unlock: double_tap
+            tap_action:
+              action: call-service
+              service: script.timed_lights
+            state:
+              - color: 'rgb(189, 255, 5)'
+                icon: 'mdi:theme-light-dark'
+                value: 'on'
+
+  # Middle Stack
+#  - type: vertical-stack
+#    cards:
+
+  # Right Stack
+#  - type: vertical-stack
+#    cards:
+      

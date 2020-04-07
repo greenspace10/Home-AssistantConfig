@@ -1,0 +1,8 @@
+{
+  "domain": "minecraft_version",
+  "name": "Minecraft Version",
+  "documentation": "https://github.com/xMrVizzy/Minecraft-Version",
+  "dependencies": [],
+  "codeowners": ["@xMrVizzy"],
+  "requirements": []
+}

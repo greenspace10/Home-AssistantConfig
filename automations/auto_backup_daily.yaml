@@ -1,0 +1,19 @@
+---
+alias: Perform Daily Backup
+trigger:
+  platform: time
+  at: "02:30:00"
+condition:
+  condition: time # Perform backup every day except Mondays.
+  weekday:
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+action:
+  service: auto_backup.snapshot_full
+  data_template:
+    name: "DailyBackup: {{ now().strftime('%A, %B %-d, %Y') }}"
+    keep_days: 14

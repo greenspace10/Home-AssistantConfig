@@ -1,0 +1,20 @@
+type: glance
+title: Home Assistant Statistics
+entities:
+  - sensor.count_automations
+  - sensor.count_sensors
+  - sensor.count_binary_sensors
+  - sensor.count_scripts
+  - sensor.count_zones
+  - sensor.count_input_booleans
+  - sensor.count_input_datetimes
+  - sensor.count_input_numbers
+  - sensor.count_input_selects
+  - sensor.count_input_texts
+  - sensor.count_lights
+  - sensor.count_switches
+  - sensor.count_fans
+  - sensor.count_media_players
+  - sensor.count_zwave
+  - sensor.count_device_trackers
+  - sensor.count_persons

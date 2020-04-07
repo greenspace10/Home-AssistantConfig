@@ -1,0 +1,7 @@
+---
+platform: template
+sensors:
+  door_washer:
+    friendly_name: "Washer Door"
+    device_class: door
+    value_template: "{{ is_state('sensor.door_washer_access_control', '22') }}"

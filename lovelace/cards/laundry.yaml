@@ -1,0 +1,53 @@
+type: custom:hui-entities-card
+title: Laundry
+entities:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+      - type: 'custom:decluttering-card'
+        template: button_laundry_notify
+        variables:
+          - name: 'Nathan'
+      - type: 'custom:decluttering-card'
+        template: button_laundry_notify
+        variables:
+          - name: 'Sarah'
+      - type: 'custom:decluttering-card'
+        template: button_laundry_notify
+        variables:
+          - name: 'Mom/Dad'
+      - type: 'custom:decluttering-card'
+        template: button_laundry_notify
+        variables:
+          - name: 'Hayley' 
+
+  - type: custom:hui-horizontal-stack-card
+    cards:
+      - type: 'custom:button-card'
+        template: button_laundry
+        name: Washer
+        entity: sensor.washer_status
+      - type: 'custom:button-card'
+        template: button_laundry
+        icon: mdi:tumble-dryer
+        name: Dryer
+        label: 'On'
+        custom_fields:
+          door: 'Door: Closed'
+          timer: 'Time: 00:42:12'
+        styles:
+          card:
+            - box-shadow: 0px 0px 3px 2px orange
+
+  - type: custom:mini-graph-card
+    name: Laundry
+    icon: mdi:washing-machine
+    hours_to_show: 24
+    font_size: 70
+    points_per_hour: 20
+    line_width: 2
+    show:
+      points: false
+      extrema: true
+    entities: 
+      - sensor.washer_power_ui
+      - sensor.plug_washer_energy_power

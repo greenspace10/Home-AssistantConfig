@@ -1,0 +1,75 @@
+type: custom:hui-entities-card
+title: Rogers Broadband - Speed Test
+entities:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+      - type: custom:mini-graph-card
+        style: |
+          ha-card { 
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+            border-radius: 0px; 
+          }
+        entities:
+          - sensor.speedtest_ping
+        name: Ping
+        icon: mdi:pulse
+        height: 30
+        font_size: 60
+        hours_to_show: 168
+        show:
+          graph: bar
+        color_thresholds:
+          - value: 20
+            color: "#FFFF00"
+          - value: 0
+            color: "#3498db"
+        
+  - type: custom:hui-horizontal-stack-card
+    cards:
+      - type: custom:mini-graph-card
+        style: |
+          ha-card { 
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+            border-radius: 0px; 
+          }
+        entities:
+          - sensor.speedtest_download
+        name: Download
+        height: 50
+        line_width: 2
+        font_size: 60
+        hours_to_show: 168
+        show:
+          extrema: true
+        color_thresholds:
+          - value: 750
+            color: "#17FC03"
+          - value: 700
+            color: "#FFFF00"
+          - value: 650
+            color: "#FC0000"
+      - type: custom:mini-graph-card
+        style: |
+          ha-card { 
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+            border-radius: 0px; 
+          }
+        entities:
+          - sensor.speedtest_upload
+        name: Upload
+        height: 60
+        line_width: 2
+        font_size: 70
+        hours_to_show: 168
+        show:
+          extrema: true
+        color_thresholds:
+          - value: 45
+            color: "#17FC03"
+          - value: 40
+            color: "#FFFF00"
+          - value: 35
+            color: "#FC0000"

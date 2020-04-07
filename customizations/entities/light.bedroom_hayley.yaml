@@ -1,0 +1,9 @@
+---
+#
+# Customizes the second floor bathroom lights in Home Assistant
+#
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#
+light.bedroom_hayley:
+  friendly_name: Bedroom Hayley
+  icon: mdi:lightbulb-group

@@ -1,0 +1,20 @@
+---
+# Activates the Z-Wave component. I have several Z-Wave based devices in my
+# Home Assistant system. I use a Aeotec Z-Stick (gen 5) as my controller device.
+#
+# https://www.home-assistant.io/docs/z-wave/installation
+#
+zwave:
+  usb_path: /dev/serial/by-id/usb-0658_0200-if00
+  network_key: !secret zwave_network_key
+  config_path: ../config/ozwave/config
+  device_config: !include ../ozwave/zwave_device_config.yaml
+  # The time period in milliseconds between polls of a nodes value
+  #polling_interval: 120000
+
+
+  # The following contains node-specific override values.
+  # I use this for hiding/ignoring z-wave stuff I don't use.
+  # This should probably be splitted later or moved or something.
+  device_config_glob: !include ../ozwave/zwave_device_config_glob.yaml
+

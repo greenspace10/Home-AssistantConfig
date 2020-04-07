@@ -1,0 +1,6 @@
+---
+
+platform: mqtt
+unique_id: timer_washer
+state_topic: "washing/ontime"  
+name: "Washer Timer"

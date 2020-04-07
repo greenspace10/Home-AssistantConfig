@@ -1,0 +1,29 @@
+---
+
+id: copy_ble_to_dt
+alias: Convert BLE tracker to device tracker
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.64_7b_ce_a7_21_3f_room_presence
+      - sensor.amazon_fire_room_presence
+      - sensor.galaxy_note8_room_presence
+      - sensor.galaxy_s9_room_presence
+      - sensor.sarah_s_iphone_room_presence
+
+action:
+  - service: device_tracker.see
+    data_template:
+      dev_id: >
+        {% if '64_7b_ce_a7_21_3f' in trigger.entity_id %}
+          nathan_phone_ble
+        {% elif 'sarah' in trigger.entity_id %}
+          sarah_phone_ble
+        {% elif 'note8' in trigger.entity_id %}
+          robert_phone_ble
+        {% elif 's9' in trigger.entity_id %}
+          hayley_phone_ble
+        {% else %}
+          {{ trigger.from_state.object_id + '_ble' | regex_replace(find='room_presence_', replace='', ignorecase=true) }}
+        {% endif %}
+      location_name: "{{ 'home' if trigger.to_state.state != 'not_home' else 'not_home' }}"

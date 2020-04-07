@@ -1,0 +1,9 @@
+---
+#
+# Customizes the second floor bathroom lights in Home Assistant
+#
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#
+switch.plug_washer:
+  friendly_name: Washing Machine
+  icon: mdi:washing-machine

@@ -1,0 +1,15 @@
+custom_header:
+  !include lovelace/custom_header/custom_header_home.yaml
+
+decluttering_templates: 
+  !include lovelace/decluttering_templates/decluttering_templates.yaml
+
+button_card_templates:
+  !include lovelace/button_card_templates/button_card_templates.yaml
+
+title: Home
+background: var(--background)
+views:
+  - !include lovelace/views/00_home_view.yaml 
+  - !include lovelace/views/90_presence.yaml
+  - !include lovelace/views/10_network.yaml

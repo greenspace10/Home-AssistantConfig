@@ -1,0 +1,25 @@
+---
+platform: template
+sensors:
+  carol_bedtime_routine:
+    friendly_name: "Carol Bedtime Routine"
+    value_template: >
+      {% if states('input_number.carol_bedtime_routine')|int == 0 %}
+        Awake
+      {% elif states('input_number.carol_bedtime_routine')|int == 1 %}
+        Routine Running
+      {% elif states('input_number.carol_bedtime_routine')|int == 2 %}
+        Sleeping
+      {% else %}
+        Alert
+      {% endif %}
+    icon_template: >
+      {% if states('input_number.carol_bedtime_routine')|int == 0 %}
+        mdi:sleep-off
+      {% elif states('input_number.carol_bedtime_routine')|int == 1 %}
+        mdi:sleep:spin
+      {% elif states('input_number.carol_bedtime_routine')|int == 2 %}
+        mdi:sleep
+      {% else %}
+        Alert
+      {% endif %}

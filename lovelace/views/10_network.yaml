@@ -1,0 +1,19 @@
+title: Network
+icon: mdi:account-network
+path: settings_network
+cards:
+  # Left Stack
+  - type: vertical-stack
+    cards:
+      - !include ../cards/network_speedtest.yaml
+      - !include ../cards/ha_stats.yaml
+
+  # Middle Stack
+  - type: vertical-stack
+    cards:
+      - !include ../cards/home_assistant.yaml
+
+  # Right Stack
+#  - type: vertical-stack
+#    cards:
+      

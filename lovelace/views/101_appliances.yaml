@@ -1,0 +1,17 @@
+title: Applianced
+icon: mdi:washing-machine
+path: appliances
+cards:
+  # Left Stack
+  - type: vertical-stack
+    cards:
+      - !include ../cards/laundry.yaml
+  # Middle Stack
+#  - type: vertical-stack
+#    cards:
+
+  # Right Stack
+#  - type: vertical-stack
+#    cards:
+#      - type: 'custom:vertical-stack-in-card'
+#        cards:

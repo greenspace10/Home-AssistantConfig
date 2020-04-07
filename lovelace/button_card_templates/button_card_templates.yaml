@@ -1,0 +1,262 @@
+button_style_settings:
+  styles:
+    card:
+      - color: var(--local-color)
+      - border-radius: 10px
+      - background-color: var(--primary-background-color)
+      - padding: 5px
+      - box-shadow: 0px 0px 2px 1px
+#      - border: 'solid 1px var(--disabled-text-color)'
+    name:
+      - color: var(--label-badge-text-color)
+    label:
+      - color: var(--label-badge-text-color)
+    lock:
+      - color: red
+    icon:
+      - color: var(--local-color)
+
+  state:
+    - value: 'on'
+      id: state_on
+      styles:
+        card:
+          - color: orange
+          - box-shadow: 0px 0px 4px 2px
+        icon:
+          - color: orange
+    - value: 'off'
+      id: state_off
+    - value: 'unavailable'
+      id: state_na
+      styles:
+        card:
+          - filter: opacity(50%)
+        icon:
+          - filter: grayscale(100%)
+
+default_button_settings:
+  template: button_style_settings
+#  size: 30%
+  show_last_changed: true
+  show_state: true
+  show_label: true
+  show_icon: true
+  aspect_ratio: 1/1
+  styles:
+    grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content min-content
+    img_cell:
+      - justify-content: start
+      - align-items: start
+    name:
+#      - text-overflow: unset
+#      - white-space: unset
+#      - word-break: break-word
+#      - text-align: start
+      - justify-self: start
+      - font-weight: bold
+#      - padding-left: 10px
+#      - font-family: Helvetica 
+      - font-size: 12px
+      - text-transform: Titlecase
+    label:
+      - text-align: start
+      - font-size: 11px
+#      - padding: 0px 10px
+#      - font-family: Helvetica
+      - justify-self: start
+    state:
+#      - text-align: start
+#      - padding-left: 10px
+      - font-size: 11px
+#      - font-family: Helvetica
+      - justify-self: start
+      - text-transform: capitalize
+#      - font-weight: bold
+
+horizontal-filler:
+  color_type: blank-card
+  styles:
+    card:
+      - width: 3px
+
+button_laundry_notify:
+  template: default_button_settings
+  show_last_changed: false
+  show_state: false
+
+button_laundry:
+  template: default_button_settings
+  aspect_ratio: 2/1
+  tap_action:
+    action: none
+  styles:
+    grid:
+      - grid-template-areas: '"i i" "n n" "s door" "l timer"'
+      - grid-template-columns: 1fr 1fr
+      - grid-template-rows: 1fr min-content min-content min-content
+    custom_fields:
+      door:
+      - align-self: end
+      - font-size: 11px
+      - font-family: Helvetica
+      - justify-self: end
+      - font-weight: bold
+      - color: var(--label-badge-text-color)
+
+      timer:
+      - align-self: end
+      - font-size: 11px
+      - font-family: Helvetica
+      - justify-self: end
+      - color: var(--label-badge-text-color)
+
+  custom_fields:
+    door: >
+      [[[ 
+        var id = entity.entity_id.split('.')[1].split('_')[0];
+        var door = (states['binary_sensor.door_' + id].state);
+        var door_state = door == 'on' ? 'Open' : 'Closed';
+        return `<span>Door: ${door_state}</span>`
+      ]]]
+    timer: >
+      [[[ 
+        var id = entity.entity_id.split('.')[1].split('_')[0];
+        var timer = (states['sensor.' + id + '_timer'].state);
+        return `<span>Time: ${timer}</span>`
+      ]]]
+  state:
+    - value: 'Running'
+      styles:
+        card:
+          - color: red
+    - value: 'Finishing'
+      styles:
+        card:
+          - color: orange
+    - value: 'Clean'
+      styles:
+        card:
+          - color: Green
+
+
+button_routine:
+  template: default_button_settings
+  aspect_ratio: 2/1
+
+button_light:
+  template: default_button_settings
+  show_last_changed: false
+  styles:
+    card:
+      - padding-bottom: 10px
+    state:
+      - padding-left: 6px
+    label:
+      - padding-left: 6px
+
+button_dimmer:
+  template: default_button_settings
+  tap_action:
+    action: toggle
+  hold_action:
+    action: more-info
+
+button_fan:
+  template: default_button_settings
+  state:
+    - id: state_on
+      styles:
+        card:
+          - color: blue
+        icon:
+          - color: blue
+      spin: true
+
+button_stat:
+  template: default_button_settings
+  show_last_changed: false
+  styles:
+    grid:
+      - grid-template-areas: '"n" "i" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 30% 1fr min-content min-content
+
+button_battery:
+  icon: mdi:battery
+  # name: Battery
+  color_type: card
+  entity: sensor.battery
+  show_name: false
+  show_state: true
+  tap_action:
+    action: more-info
+  state:
+  - value: 10
+    operator: '<='
+    color: "#FF0000" #red
+    icon: "mdi:battery-10"
+    styles:
+      grid:
+      - animation: blink 2s linear infinite
+  - value: 20
+    operator: '<='
+    color: "#ff6600" #red orange
+    icon: "mdi:battery-20"
+  - value: 30
+    operator: '<='
+    color: "#ff9933" #dark orange
+    icon: "mdi:battery-30"
+  - value: 40
+    operator: '<='
+    color: "#ffcc00" #light orange
+    icon: "mdi:battery-40"
+  - value: 50
+    operator: '<='
+    color: "#FFFF00" #yellow
+    icon: "mdi:battery-50"
+  - value: 60
+    operator: '<='
+    color: "#FFFF00" #yellow
+    icon: "mdi:battery-60"
+  - value: 70
+    operator: '<='
+    color: "#FFFF00" #yellow
+    icon: "mdi:battery-70"
+  - value: 80
+    operator: '<='
+    color: "#CCFF33" #yellow green
+    icon: "mdi:battery-80"
+  - value: 90
+    operator: '<='
+    color: "#66FF33" #light green
+    icon: "mdi:battery-90"
+  - value: 100
+    operator: '<='
+    color: "#279b37" #dark green
+    icon: "mdi:battery"
+
+
+vertical-divider-grey:
+  color_type: blank-card
+  styles:
+    card:
+      - width: 3px
+      - color: '#292929'
+
+horizontal-divider-grey:
+  color_type: blank-card
+  styles:
+    card:
+      - height: 3px
+      - background-color: '#292929'
+
+dimmer-left-button-settings: 
+  template: left-button-settings
+  icon: mdi:lightbulb
+  styles:
+    card:
+      - width: 160px

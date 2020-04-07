@@ -1,0 +1,14 @@
+---
+# Entity configuration for Google Assistant.
+#
+# I use this to customize how the device shows up in Google Assistant.
+#
+# https://www.home-assistant.io/integrations/google_assistant/#entity_config
+#
+light.livinig_Room:
+  name: Living Room
+  aliases:
+    - Living Room
+    - Bleep Bloop
+    - Living Room Light
+  room: Living Room

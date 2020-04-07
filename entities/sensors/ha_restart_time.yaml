@@ -1,0 +1,5 @@
+---
+
+platform: mqtt
+state_topic: "homeassistant/harestart"  
+name: "HA Restart Time"

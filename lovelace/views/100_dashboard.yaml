@@ -1,0 +1,194 @@
+title: Dashboard
+icon: mdi:tablet-dashboard
+path: dashboard
+cards:
+  # Left Stack
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Living Room
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            name: Tempurature
+            hours_to_show: 72
+            font_size: 60
+            show:
+              points: false
+            entities: 
+              - sensor.motion_livingroom_temperature
+          - type: custom:mini-graph-card
+            name: Humidity
+            icon: mdi:water-percent
+            hours_to_show: 72
+            font_size: 60
+            line_color: blue
+            show:
+              points: false
+            entities: 
+              - sensor.motion_livingroom_relative_humidity
+          - type: custom:mini-graph-card
+            name: Illumination
+            icon: mdi:brightness-5
+            hours_to_show: 72
+            font_size: 60
+            line_color: red
+            show:
+              points: false
+            entities: 
+              - sensor.motion_livingroom_luminance
+      - type: horizontal-stack
+        cards:
+
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.living_room
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.living_room_floor
+          - type: 'custom:button-card'
+            color_type: blank-card
+      - type: custom:gap-card
+        height: 20
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Seasonal
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            aspect_ratio: 1.5/1
+            entity: switch.plug_ff_garage
+          - type: 'custom:button-card'
+            template: button_light
+            aspect_ratio: 1.5/1
+            entity: null
+            name: Inside
+            icon: mdi:power-socket-us
+            label: 'Off'
+
+  # Middle Stack
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Entry
+            double_tap_action:
+              action: navigate
+              navigation_path: /lovelace-admin/default_view
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            name: Tempurature
+            hours_to_show: 72
+            font_size: 60
+            show:
+              points: false
+            entities: 
+              - sensor.motion_entry_temperature
+          - type: custom:mini-graph-card
+            name: Humidity
+            icon: mdi:water-percent
+            hours_to_show: 72
+            font_size: 60
+            line_color: blue
+            show:
+              points: false
+            entities: 
+              - sensor.motion_entry_relative_humidity
+          - type: custom:mini-graph-card
+            name: Illumination
+            icon: mdi:brightness-5
+            hours_to_show: 72
+            font_size: 60
+            line_color: red
+
+            entities: 
+              - sensor.motion_entry_luminance
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.entry
+            lock:
+              enabled: '[[[ return states["input_boolean.bedroom_mom"].state == "on"; ]]]'
+              duration: 10
+              unlock: double_tap
+          - type: 'custom:button-card'
+            color_type: blank-card
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.outside_front_porch
+
+      - type: custom:gap-card
+        height: 20
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Routines
+            double_tap_action:
+              action: call-service
+              service: lovelace.reload_resources
+
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_routine
+            aspect_ratio: 1.5/1
+            entity: sensor.carol_bedtime_routine
+            lock:
+              enabled: false
+            tap_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.bedroom_mom
+            hold_action:
+              action: call-service
+              service: script.carol_bedtime_routine
+            state:
+              - value: 'Running Routine'
+                styles:
+                  card:
+                    - color: orange
+                  icon:
+                    - color: orange
+              - value: 'Sleeping'
+                styles:
+                  card:
+                    - color: purple
+                  icon:
+                    - color: purple
+          - type: 'custom:button-card'
+            template: button_routine
+            aspect_ratio: 1.5/1
+            entity: group.timed_lights_outside
+            name: Night Time Lights
+            icon: 'mdi:theme-light-dark'
+            lock:
+              enabled: '[[[ return states["input_boolean.bedroom_mom"].state == "on"; ]]]'
+              duration: 10
+              unlock: double_tap
+            tap_action:
+              action: call-service
+              service: script.blah_blah
+            state:
+              - color: 'rgb(189, 255, 5)'
+                icon: 'mdi:theme-light-dark'
+                value: 'on'
+
+  # Right Stack
+#  - type: vertical-stack
+#    cards:

@@ -1,0 +1,10 @@
+---
+# Light group: Second Floor Bathroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: sf_bathroom
+entities:
+  - light.sf_bathroom_vanity
+  - light.sf_bathroom_ceiling

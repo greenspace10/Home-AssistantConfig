@@ -1,0 +1,25 @@
+---
+
+platform: template
+sensors:
+## Washing Machine Status
+  washer_status:
+    value_template: "{{ states('input_select.washer_status') }}"
+    friendly_name: "Washer Status"
+## Washing Machine Power Usage
+  washer_power:
+    value_template: "{{ states('sensor.plug_washer_energy_power') | int }}"
+    friendly_name: 'Washer Power' 
+
+#### Lovelace-UI ####
+
+## Washing Machine Power Usage
+  washer_power_ui:
+    value_template: >-
+      {% if is_state('sensor.washer_status', 'Idle') or is_state('sensor.washer_status', 'Clean')  %}
+        {{ 0 | int }}
+      {% else %}
+        {{ states('sensor.plug_washer_energy_power') | int }}
+      {% endif %}
+    friendly_name: "Washer Power"
+    unit_of_measurement: "W"

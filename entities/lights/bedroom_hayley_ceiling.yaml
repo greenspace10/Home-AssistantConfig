@@ -1,0 +1,11 @@
+---
+# Light group: Second Floor Bathroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: bedroom_hayley
+entities:
+  - light.bedroom_hayley_bulb_1
+  - light.bedroom_hayley_bulb_2
+  - light.bedroom_hayley_bulb_3

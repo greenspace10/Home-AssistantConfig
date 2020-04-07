@@ -1,0 +1,9 @@
+---
+#
+# Customizes the bathroom ceiling name in Home Assistant
+#
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#
+light.sf_hallway:
+  friendly_name: Hallway
+  icon: mdi:ceiling-light

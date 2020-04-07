@@ -1,0 +1,24 @@
+type: custom:hui-entities-card
+title: Home Assitant Server
+entities:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+      - type: picture
+        image: /local/lovelace/settings/home_assistant.png
+      - type: custom:bignumber-card
+        title: Uptime
+        entity: sensor.time_online
+        scale: 15px
+      - type: custom:bignumber-card
+        title: Restart Time
+        entity: sensor.ha_restart_time
+        scale: 15px
+  - type: custom:hui-horizontal-stack-card
+    cards: 
+      - type: custom:bar-card
+        entity: sensor.ha_ram_used_percent
+      - type: custom:bar-card
+        entity: sensor.ha_cpu_used
+
+
+

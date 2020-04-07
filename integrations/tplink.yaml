@@ -1,0 +1,21 @@
+---
+# The tplink integration allows you to control your TP-Link Smart Home Devices 
+# such as smart plugs and smart bulbs.
+#
+# https://www.home-assistant.io/integrations/tplink/
+#
+tplink:
+  # Disable the Auto Discovery Feature
+  discovery: false
+  # Hostnames/IPs for my connected TP-Link Kaza devices
+  switch:
+    - host: 10.0.5.50   # Switch FF Front Porch
+    - host: 10.0.5.51   # Switch SF Bathroom Light 2
+    - host: 10.0.5.52   # Switch FF Bedroom
+    - host: 10.0.5.53   # Switch SF Bathroom Fan
+    - host: 10.0.5.54   # Switch SF Bathroom Light 1
+    - host: 10.0.5.70   # Switch FF Entry
+    - host: 10.0.5.71   # Switch SF Hallway
+    - host: 10.0.5.101  # Plug BF Garage
+    - host: 10.0.5.102  # Plug FF Christmas Tree
+    - host: 10.0.5.103  # Plug FF Mom Room

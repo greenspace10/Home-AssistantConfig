@@ -1,0 +1,42 @@
+chevrons: true
+compact_mode: true
+hidden_tab_redirect: false
+exceptions:
+  - conditions:
+      user: Carol Robinson
+    config:
+      default_tab: mom
+      disable_sidebar: true
+      hide_config: true
+      hide_help: true
+      hide_raw: true
+      hide_unused: true
+      menu_hide: true
+      options_hide: true
+      show_tabs: 'mom, dashboard'
+      voice_hide: true
+  - conditions:
+      user: Panel
+    config:
+      default_tab: dashboard
+      disable_sidebar: true
+      footer_mode: true
+      hide_config: true
+      hide_help: true
+      hide_raw: true
+      hide_unused: true
+      menu_hide: true
+      options_hide: true
+  - conditions:
+      user: Sarah Butcher
+    config:
+      default_tab: dashboard
+      disable_sidebar: true
+      hide_config: true
+      hide_help: true
+      hide_raw: true
+      hide_unused: true
+      menu_hide: true
+      options_hide: true
+      show_tabs: dashboard
+      voice_hide: true

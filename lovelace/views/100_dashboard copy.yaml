@@ -1,0 +1,229 @@
+title: Dashboard
+icon: mdi:tablet-dashboard
+path: dashboard
+cards:
+  # Left Stack
+  - type: vertical-stack
+    cards:
+      - type: custom:hui-entities-card
+        title: First Floor - Lighting
+        entities:
+          - type: custom:hui-horizontal-stack-card
+            cards:
+              - type: 'custom:text-divider-row'
+                text: Indoor
+              - type: 'custom:text-divider-row'
+                text: Outdoor
+
+          - type: custom:hui-horizontal-stack-card
+            cards:
+
+              - type: 'custom:button-card'
+                template: button_light
+                entity: light.living_room
+              - type: 'custom:button-card'
+                template: button_light
+                entity: light.entry
+                lock:
+                  enabled: '[[[ return states["input_boolean.bedroom_mom"].state == "on"; ]]]'
+                  duration: 10
+                  unlock: double_tap
+              - type: 'custom:button-card'
+                template: button_light
+                entity: light.outside_front_porch
+              - type: 'custom:button-card'
+                template: button_light
+                entity: null
+                name: Back Light
+                icon: 'mdi:spotlight-beam'
+                label: 'Off <br> Forever'
+          - type: divider
+          - type: custom:hui-horizontal-stack-card
+            cards:
+              - type: custom:text-divider-row
+                text: Bedroom Carol
+
+
+              - type: 'custom:text-divider-row'
+                text: Seasonal
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.bedroom_mom
+            lock:
+              enabled: '[[[ return states["input_boolean.bedroom_mom"].state == "on"; ]]]'
+              duration: 10
+              unlock: double_tap
+          - type: 'custom:button-card'
+            color_type: blank-card
+          - type: 'custom:button-card'
+            template: button_light
+            entity: switch.plug_ff_garage
+          - type: 'custom:button-card'
+            template: button_light
+            entity: null
+            name: Inside
+            icon: mdi:power-socket-us
+            label: 'Off <br> Forever'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Routines
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_routine
+            entity: sensor.carol_bedtime_routine
+            lock:
+              enabled: false
+            tap_action:
+              action: call-service
+              service: input_boolean.toggle
+              service_data:
+                entity_id: input_boolean.bedroom_mom
+            hold_action:
+              action: call-service
+              service: script.carol_bedtime_routine
+            state:
+              - value: 'Running Routine'
+                styles:
+                  card:
+                    - color: orange
+                  icon:
+                    - color: orange
+              - value: 'Sleeping'
+                styles:
+                  card:
+                    - color: purple
+                  icon:
+                    - color: purple
+
+          - type: 'custom:button-card'
+            template: button_routine
+            entity: group.timed_lights_outside
+            name: Night Time Lights
+            icon: 'mdi:theme-light-dark'
+            lock:
+              enabled: '[[[ return states["input_boolean.bedroom_mom"].state == "on"; ]]]'
+              duration: 10
+              unlock: double_tap
+            tap_action:
+              action: call-service
+              service: script.blah_blah
+            state:
+              - color: 'rgb(189, 255, 5)'
+                icon: 'mdi:theme-light-dark'
+                value: 'on'
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Automations
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            entity: input_boolean.inside_decorations
+            name: Seasonal - Interior
+            icon: 'mdi:pine-tree'
+          - type: 'custom:button-card'
+            template: button_light
+            entity: input_boolean.outside_decorations
+            name: Seasonal - Exterior
+            icon: 'far:tree-christmas'
+
+
+  # Middle Stack
+  - type: vertical-stack
+    cards:
+      - type: 'custom:button-card'
+        template: button_default_title
+        name: Lights - Second Floor
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Hallway
+          - type: 'custom:button-card'
+            template: button_default_title
+            double_tap_action:
+              action: navigate
+              navigation_path: /lovelace-admin/default_view
+            name: Bedroom Nathan
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.sf_hallway
+          - type: 'custom:button-card'
+            color_type: blank-card
+          - type: 'custom:button-card'
+            color_type: blank-card
+          - type: 'custom:button-card'
+            template: button_dimmer
+            entity: light.bedroom_nathan
+
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_default_title
+            name: Bathroom
+            aspect_ratio: 10.5/1
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.sf_bathroom_vanity
+          - type: 'custom:button-card'
+            template: button_light
+            entity: light.sf_bathroom_ceiling
+          - type: 'custom:button-card'
+            color_type: blank-card
+          - type: 'custom:button-card'
+            template: button_fan
+            entity: fan.sf_bathroom_fan
+
+  # Right Stack
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: vertical-divider-grey
+              - type: custom:button-card
+                template: vertical-divider-grey
+              - type: custom:button-card
+                template: dimmer-left-button-settings
+                entity: light.sf_bathroom_ceiling
+                name: Under Cabinets
+              - type: custom:slider-entity-row
+                style: |
+                  ha-card{
+                    background-color: '#222222'
+                    border-radius: 0px 10px 10px 0px
+                    height: 39px
+                    padding: 8px
+                  }
+                entity: light.bedroom_nathan
+                step: 2
+                full_row: true
+              - type: custom:button-card
+                template: vertical-divider-grey
+              - type: custom:button-card
+                template: vertical-divider-grey
+          - type: custom:button-card
+            template: horizontal-divider-grey
+          
+          - type: alarm-panel
+            entity: alarm_control_panel.ha_alarm

@@ -1,0 +1,9 @@
+---
+#
+# Customizes the second floor bathroom lights in Home Assistant
+#
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#
+light.bedroom_mom_ceiling:
+  friendly_name: Bedroom Mom Ceiling
+  icon: mdi:ceiling-light

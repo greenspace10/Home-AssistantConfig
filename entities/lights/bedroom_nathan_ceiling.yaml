@@ -1,0 +1,11 @@
+---
+# Light group: Second Floor Bathroom
+#
+# https://www.home-assistant.io/integrations/light.group/
+#
+platform: group
+name: bedroom_nathan
+entities:
+  - light.bedroom_nathan_bulb_1
+  - light.bedroom_nathan_bulb_2
+  - light.bedroom_nathan_bulb_3

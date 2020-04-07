@@ -1,0 +1,9 @@
+---
+#
+# Customizes the second floor bathroom lights in Home Assistant
+#
+# https://www.home-assistant.io/docs/configuration/customizing-devices/
+#
+light.outside_front_porch:
+  friendly_name: Front Porch
+  icon: mdi:spotlight-beam
